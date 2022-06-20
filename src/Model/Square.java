@@ -3,17 +3,18 @@ package Model;
 import javafx.scene.paint.Color;
 
 public class Square extends Shape {
-	
-	protected int width,heigth; 
+	protected int width, heigth;
 	protected int area;
 
 	public Square() {
 		super();
 	}
-	public Square(int x, int y ,int width , int heigth ) {
+
+	public Square(int x, int y, int width, int heigth) {
 		this(x, y, RandomColor(), width, heigth);
 	}
-	public Square(int x, int y, Color color ,int width , int heigth ) {
+
+	public Square(int x, int y, Color color, int width, int heigth) {
 		super(x, y, color);
 		setWidth(width);
 		setHeigth(heigth);
@@ -27,13 +28,13 @@ public class Square extends Shape {
 	public void setWidth(int width) {
 		this.width = width;
 	}
+
 	public int getArea() {
 		return area;
 	}
 
-	private void setArea(int width , int height)  {
-		
-		this.area = width*height;
+	private void setArea(int width, int height) {
+		this.area = width * height;
 	}
 
 	public int getHeigth() {
@@ -46,14 +47,11 @@ public class Square extends Shape {
 
 	@Override
 	public String toString() {
-		
-		return super.toString() + "The width is: "+width+ "\n The heigth is: "+heigth+"\n The area is: "+area+"\n"; 
+		return super.toString() + "The width is: " + width + "\n The heigth is: " + heigth + "\n The area is: " + area
+				+ "\n";
 	}
 
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
 		return false;
 	}
-
-	
 }

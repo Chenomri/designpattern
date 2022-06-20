@@ -1,24 +1,24 @@
 package Model;
 
 import java.util.Random;
-
 import javafx.scene.paint.Color;
 
-public class Shape  {
+public class Shape {
 	protected int x, y;
 	protected Color color;
 
 	public Shape() {
 		this(0, 0, RandomColor());
 	}
+
 	public Shape(int x, int y) {
 		this(x, y, RandomColor());
 	}
+
 	public Shape(int x, int y, Color color) {
 		setX(x);
 		setY(y);
 		setColor(color);
-
 	}
 
 	public int getX() {
@@ -45,23 +45,18 @@ public class Shape  {
 		this.color = color;
 	}
 
-
-
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
 		return super.equals(obj);
 	}
 
 	@Override
 	public String toString() {
-		
-		return "The X located is: "+x+"\n The Y located is: "+y+" \n The color is: " + color.toString() +"\n";
+		return "The X located is: " + x + "\n The Y located is: " + y + " \n The color is: " + color.toString() + "\n";
 	}
-	
+
 	public static Color RandomColor() {
 		Random random = new Random();
 		return Color.rgb(random.nextInt(255), random.nextInt(255), random.nextInt(255));
 	}
-	
 }

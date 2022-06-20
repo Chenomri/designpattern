@@ -5,7 +5,6 @@ import java.util.Stack;
 import javafx.scene.paint.Color;
 
 public class Ship<T extends Containerr<Object>> extends Shape implements ShipMovetable {
-
 	public static final int MaxHeigth = 5;
 	private static int idSerial = 0;
 	private int width, height, id, capcity, currentCapCity = 0;
@@ -28,7 +27,6 @@ public class Ship<T extends Containerr<Object>> extends Shape implements ShipMov
 		setHeight(height);
 		setCapcity(capcity);
 		containers = new ArrayList<Stack<Containerr>>();
-
 	}
 
 	public int getWidth() {
@@ -77,25 +75,17 @@ public class Ship<T extends Containerr<Object>> extends Shape implements ShipMov
 	}
 
 	public ArrayList<Stack<Containerr>> getContainers() {
-
 		return containers;
 	}
-public void backContainerToship(Containerr c) {
-		
-	int minStackIndex=5;
-	for(int i = 0 ; i < containers.size() ; i++) {
-		
-		if(containers.get(i).size() < minStackIndex) {
-			minStackIndex=i;
-		
+
+	public void backContainerToship(Containerr c) {
+		int minStackIndex = 5;
+		for (int i = 0; i < containers.size(); i++) {
+			if (containers.get(i).size() < minStackIndex) {
+				minStackIndex = i;
+			}
 		}
-	}
-	
-	addContainersToStackNumber(c, minStackIndex);
-	
-		
-		
-	
+		addContainersToStackNumber(c, minStackIndex);
 	}
 
 	public Containerr getTopContainer() {
@@ -107,7 +97,6 @@ public void backContainerToship(Containerr c) {
 				if (containers.get(i).get(j).isMark()) {
 
 					return containers.get(i).pop();
-
 				}
 			}
 		}
@@ -117,49 +106,35 @@ public void backContainerToship(Containerr c) {
 	public Containerr getTopContainerByIndex(int xx, int yy) {
 
 		// here we checking with The (x,y) in range of containers
-
 		int[] range = getRangeToClick();
 		if (x <= range[0] || x >= range[1] || y >= range[2] || y <= range[3]) {
 			return null;
-
 		}
 
 		// here we calculate where the container stay and take out the top container
-
 		int fountContainerX = (((xx - x) / containers.get(0).get(0).getWidth()) + 1) - 1;
 		int fountContainerY = (((yy - y) / containers.get(0).get(0).getHeigth()) + 1) - 1;
-
 		return containers.get(fountContainerX).pop();
-
 	}
 
 	public boolean addMarkToContainerByIndex(int x1, int y1, boolean mark) {
-
 		// here we checking with The (x,y) in range of containers
-
 		int[] range = getRangeToClick();
 		if (x1 <= range[0] || x1 >= range[1] || y1 >= range[2] || y1 <= range[3]) {
-
 			return false;
 		}
 
 		// here we calculate where the container stay and take out the top container
-
 		int fountContainerX = (((x1 - x) / containers.get(0).get(0).getWidth()) + 1);
 		int fountContainerY = (((y - y1) / containers.get(0).get(0).getHeigth()) + 1);
-
 		containers.get(fountContainerX - 1).get(fountContainerY - 1).setMark(mark);
 		return true;
-
 	}
 
 	public int[] getLocatedStackMarkContainer() {
-
 		int[] location = new int[2];
 		for (int i = 0; i < containers.size(); i++) {
-
 			for (int j = 0; j < containers.get(i).size(); j++) {
-
 				if (containers.get(i).get(j).isMark()) {
 					location[0] = i; // number stack
 					location[1] = j; // index in stack
@@ -168,29 +143,22 @@ public void backContainerToship(Containerr c) {
 			}
 		}
 		return location;
-
 	}
 
 	public boolean addContainersToStackNumber(Containerr container, int stackNumber) {
-
 		if (containers.size() < stackNumber + 1) {
 			return false;
 		}
-
 		if (containers.get(stackNumber).size() < MaxHeigth) {
-
 			container.setX(x + stackNumber * (container.getWidth() + 5));
 			container.setY(y - (containers.get(stackNumber).size() + 1) * container.getHeigth());
 			containers.get(stackNumber).push(container);
 			return true;
 		}
-
 		return false;
-
 	}
 
 	public Containerr removeContainersToStackNumber(int stackNumber) {
-
 		return containers.get(stackNumber).pop();
 	}
 
@@ -199,7 +167,6 @@ public void backContainerToship(Containerr c) {
 		// here we checking if we have more place in the stack
 		// if not we create a new stock
 		// and adding container to last stock
-
 		if (currentCapCity++ % MaxHeigth == 0) {
 			containers.add(new Stack<Containerr>());
 		}
@@ -215,7 +182,6 @@ public void backContainerToship(Containerr c) {
 		int SrangeY = y;
 		int ErangeX = x + containers.size() * containers.get(0).get(0).getWidth();
 		int ErangeY = y - (containers.get(0).get(0).getHeigth()) * MaxHeigth;
-
 		range[0] = SrangeX;
 		range[1] = ErangeX;
 		range[2] = SrangeY;
